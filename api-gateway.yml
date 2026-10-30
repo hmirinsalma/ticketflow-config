@@ -23,6 +23,13 @@ spring:
               filters:
                 - AddResponseHeader=X-Served-By, api-gateway
 
+            - id: booking-service
+              uri: lb://booking-service
+              predicates:
+                - Path=/api/v1/bookings/**
+              filters:
+                - AddResponseHeader=X-Served-By, api-gateway
+
 management:
   endpoint:
     gateway:
@@ -31,3 +38,4 @@ management:
     web:
       exposure:
         include: health,info,gateway
+
